@@ -46,6 +46,7 @@ const Quiz2CreatorsTable = () => {
   const handleAddButtonPressed = () => {
     /* Quiz #2 - 2. Complete the `Add` feature */
     /* Your code goes here */
+      quiz2Creators.push(newCreator);
   };
 
   const renderAddNewCreator = () => {
@@ -118,16 +119,18 @@ const Quiz2CreatorsTable = () => {
               <StyledTableCell>ID</StyledTableCell>
               <StyledTableCell>Name</StyledTableCell>
               <StyledTableCell>Phone</StyledTableCell>
+              <StyledTableCell>Email</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {quiz2Creators.map((row) => {
-              const { id, name, phone } = row || {};
+              const { id, name, phone, email } = row || {};
               return (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell>{id}</StyledTableCell>
                   <StyledTableCell>{name}</StyledTableCell>
                   <StyledTableCell>{phone}</StyledTableCell>
+                  <StyledTableCell>{email}</StyledTableCell>
                 </StyledTableRow>
               );
             })}
