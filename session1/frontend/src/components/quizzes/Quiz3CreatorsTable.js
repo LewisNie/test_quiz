@@ -54,6 +54,9 @@ const Quiz3CreatorsTable = () => {
   const handleAddButtonPressed = () => {
     /* Quiz #3 - 1. Complete the `Add` feature */
     /* Your code goes here */
+    quiz3Creators.push(newCreator);
+    dispatch(addNewQuiz3Creators());
+    //may revert change when has error coming
   };
 
   const renderAddNewCreator = () => {

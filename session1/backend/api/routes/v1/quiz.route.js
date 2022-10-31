@@ -21,6 +21,7 @@ const TAGS = [
   "painter",
 ];
 const quiz4Influencers = [];
+const quizTagsMap = new Map();
 for (let i = 0; i < 10000000; i++) {
   const randomTagIndex = Math.floor(Math.random() * TAGS.length);
   const influencer = {
@@ -28,6 +29,10 @@ for (let i = 0; i < 10000000; i++) {
     name: `name-${i}`,
     tag: TAGS[randomTagIndex],
   };
+  if (!quizTagsMap.has(TAGS[randomTagIndex])) {
+    quizTagsMap.set(TAGS[randomTagIndex], [influencer]);
+  }
+  quizTagsMap.get(TAGS[randomTagIndex]).push(influencer);
   quiz4Influencers.push(influencer);
 }
 
@@ -40,6 +45,8 @@ router.route("/addNewQuiz3Creators").post((req, res) => {
   const { newCreator } = body || {};
   /* Quiz #3 - 3. Handle the POST request sent from the client */
   /* Your code goes here */
+  quiz3Creators.push(newCreator);
+  // we may check if save error we send error message and roll back in the frontend
   res.status(200).send("ok");
 });
 
@@ -68,9 +75,7 @@ router.route("/queryQuiz4Creators").get((req, res) => {
   const start = new Date().getTime();
 
   /* Quiz #4 - Optimized the lookup */
-  const results = quiz4Influencers.filter(
-    (influencer) => influencer.tag === tag
-  );
+  const results = quizTagsMap.get(tag);
 
   const elapsed = new Date().getTime() - start;
   res.status(200).send({
